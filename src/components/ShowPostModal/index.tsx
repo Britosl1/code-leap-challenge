@@ -1,20 +1,20 @@
 import {
-  CreatePostModalBottomContainer,
-  CreatePostModalContainer,
-  CreatePostModalTopContainer,
+  ShowPostModalBottomContainer,
+  ShowPostModalContainer,
+  ShowPostModalTopContainer,
 } from "./styles";
 
-export function CreatePostModal() {
+export function ShowPostModal() {
   return (
-    <CreatePostModalContainer>
-      <CreatePostModalTopContainer>
+    <ShowPostModalContainer>
+      <ShowPostModalTopContainer>
         My First Post at CodeLeap Network!
         <div>
           <button>1</button>
           <button>2</button>
         </div>
-      </CreatePostModalTopContainer>
-      <CreatePostModalBottomContainer>
+      </ShowPostModalTopContainer>
+      <ShowPostModalBottomContainer>
         <div>
           <span>@Victor</span>
           <span>25 minutes ago</span>
@@ -28,7 +28,7 @@ export function CreatePostModal() {
           feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
           lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
         </p>
-      </CreatePostModalBottomContainer>
-    </CreatePostModalContainer>
+      </ShowPostModalBottomContainer>
+    </ShowPostModalContainer>
   );
 }

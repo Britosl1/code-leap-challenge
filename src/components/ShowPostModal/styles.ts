@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const CreatePostModalContainer = styled.div`
+export const ShowPostModalContainer = styled.div`
   background: #ffffff;
   border: 1px solid #999999;
   border-radius: 16px;
 `;
 
-export const CreatePostModalTopContainer = styled.div`
+export const ShowPostModalTopContainer = styled.div`
   background: #7695ec;
   height: 70px;
   display: flex;
@@ -24,7 +24,7 @@ export const CreatePostModalTopContainer = styled.div`
   }
 `;
 
-export const CreatePostModalBottomContainer = styled.div`
+export const ShowPostModalBottomContainer = styled.div`
   padding: 24px;
 
   span {

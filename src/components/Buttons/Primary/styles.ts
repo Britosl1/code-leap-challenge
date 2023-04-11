@@ -11,6 +11,8 @@ export const PrimaryButtonContainer = styled.button`
   line-height: 19px;
   color: #ffffff;
   padding: 7px 31px;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
 
   &:hover {

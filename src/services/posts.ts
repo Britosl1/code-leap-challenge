@@ -11,6 +11,11 @@ export interface UserPost {
 export const getPosts = async (): Promise<UserPost[]> => {
   const response = await fetch(url, { method: "GET" });
   const data = await response.json();
-  console.log("dasdsa", data.results);
   return data.results;
+};
+
+export const getUniquePost = async (id: number): Promise<UserPost> => {
+  const response = await fetch(`${url}/${id}/`, { method: "GET" });
+  const data = await response.json();
+  return data;
 };

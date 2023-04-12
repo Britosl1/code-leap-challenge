@@ -5,7 +5,7 @@ export const EditPostModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   inset: 0px;
   height: 100%;

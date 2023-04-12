@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DeletePostModal } from "../DeletePostModal";
 import {
   ShowPostModalBottomContainer,
@@ -7,12 +7,14 @@ import {
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
 import { timeSince } from "../../utils";
+import { UserPost, getUniquePost } from "../../services/posts";
 
 interface IShowPostModalProps {
   content: string;
   created_Datetime: string;
   title: string;
   username: string;
+  postId: number;
 }
 
 export function ShowPostModal({
@@ -20,9 +22,17 @@ export function ShowPostModal({
   username,
   created_Datetime,
   content,
+  postId,
 }: IShowPostModalProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [post, setPost] = useState<UserPost>();
+
+  useEffect(() => {
+    getUniquePost(postId).then((res) => {
+      setPost({ ...res, content: res.content, title: res.title });
+    });
+  }, [postId]);
 
   return (
     <ShowPostModalContainer>
@@ -49,6 +59,14 @@ export function ShowPostModal({
       )}
       {isEditModalOpen && (
         <EditPostModal
+          content={post?.content}
+          title={post?.title}
+          // onChangeTitle={(e: React.ChangeEvent<HTMLInputElement>) =>
+          //   setPost({ title: e.currentTarget.value })
+          // }
+          // onChangeContent={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          //   setPostContent(e.currentTarget.value)
+          // }
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(!isEditModalOpen)}
           onSave={() => setIsEditModalOpen(!isEditModalOpen)}

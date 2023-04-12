@@ -21,6 +21,7 @@ export function Main() {
         <CreatePostModal />
         {posts?.map((post) => (
           <ShowPostModal
+            postId={post.id}
             key={post.id}
             content={post.content}
             created_Datetime={post.created_datetime}

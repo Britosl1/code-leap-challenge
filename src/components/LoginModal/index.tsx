@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { Buttons } from "../Buttons";
 import { LoginModalContainer } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export function LoginModal() {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const [userName, setUserName] = useState<string>("");
+  const navigate = useNavigate();
 
   const userLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     localStorage.setItem("userName", userName);
+    navigate("/");
   };
 
   useEffect(() => {

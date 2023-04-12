@@ -1,18 +1,18 @@
+import { useEffect } from "react";
 import "./App.css";
-import { ShowPostModal } from "./components/ShowPostModal";
-import { NavBar } from "./components/NavBar";
-import { CreatePostModal } from "./components/CreatePostModal";
-import { DeletePostModal } from "./components/DeletePostModal";
-import { EditPostModal } from "./components/EditPostModal";
+import { Main } from "./pages/Main";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const userIsOn = localStorage.getItem("userName");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userIsOn === null) navigate("/sign-up");
+  });
   return (
     <>
-      <NavBar />
-      <ShowPostModal />
-      <CreatePostModal />
-      <DeletePostModal />
-      <EditPostModal />
+      <Main />
     </>
   );
 }

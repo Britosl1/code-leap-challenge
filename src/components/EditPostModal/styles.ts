@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const EditPostModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
-  /* opacity: 0.6; */
   display: flex;
   justify-content: center;
   align-items: center;

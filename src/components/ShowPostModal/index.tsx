@@ -6,15 +6,28 @@ import {
   ShowPostModalTopContainer,
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
+import { timeSince } from "../../utils";
 
-export function ShowPostModal() {
+interface IShowPostModalProps {
+  content: string;
+  created_Datetime: string;
+  title: string;
+  username: string;
+}
+
+export function ShowPostModal({
+  title,
+  username,
+  created_Datetime,
+  content,
+}: IShowPostModalProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
 
   return (
     <ShowPostModalContainer>
       <ShowPostModalTopContainer>
-        My First Post at CodeLeap Network!
+        {title}
         <div>
           <button onClick={() => setIsEditModalOpen(true)}>Update</button>
           <button onClick={() => setIsDeleteModalOpen(true)}>Delete</button>
@@ -22,18 +35,10 @@ export function ShowPostModal() {
       </ShowPostModalTopContainer>
       <ShowPostModalBottomContainer>
         <div>
-          <span>@Victor</span>
-          <span>25 minutes ago</span>
+          <span>{`@${username}`}</span>
+          <span>{created_Datetime} ago</span>
         </div>
-        <p>
-          Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
-          elit. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-          mattis placerat. Duis vel nibh at velit scelerisque suscipit. Duis
-          lobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
-          feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
-          lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
-        </p>
+        <p>{content}</p>
       </ShowPostModalBottomContainer>
       {isDeleteModalOpen && (
         <DeletePostModal

@@ -6,11 +6,10 @@ body {
   background-color: rgba(221, 221, 221, 1);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 #root {
   height: 100vh;
+}
+
+textarea {
+  font-family: "Roboto", sans-serif;
 }

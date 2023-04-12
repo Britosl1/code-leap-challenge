@@ -1,9 +1,11 @@
 import { Primary } from "./Primary";
-import { Danger } from "./Danger";
 import { Secondary } from "./Secondary";
+import { Danger } from "./Danger";
+import { Success } from "./Success";
 
 export const Buttons = {
   Primary,
   Secondary,
   Danger,
+  Success,
 };

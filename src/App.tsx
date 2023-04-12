@@ -4,6 +4,7 @@ import { LoginModal } from "./components/LoginModal";
 import { NavBar } from "./components/NavBar";
 import { CreatePostModal } from "./components/CreatePostModal";
 import { DeletePostModal } from "./components/DeletePostModal";
+import { EditPostModal } from "./components/EditPostModal";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <ShowPostModal />
       <CreatePostModal />
       <DeletePostModal />
+      <EditPostModal />
     </>
   );
 }

@@ -16,7 +16,13 @@ export function CreatePostModal() {
         placeholder="Content here"
       />
       <div>
-        <Buttons.Primary btnName="Create" onClick={() => {}} />
+        <Buttons.Primary
+          btnName="Create"
+          onClick={() => {
+            console.log("teetet");
+          }}
+          // isDisabled={true}
+        />
       </div>
     </CreatePostModalContainer>
   );

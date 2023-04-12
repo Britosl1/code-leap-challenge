@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
-export const PrimaryButtonContainer = styled.button`
-  background: #7695ec;
+interface IPrimaryButtonStyledProps {
+  disabledGrey?: boolean;
+}
+
+export const PrimaryButtonContainer = styled.button<IPrimaryButtonStyledProps>`
+  /* background: #7695ec; */
+  background: ${(props) => (props.disabledGrey ? "grey" : "#7695ec")};
   border-radius: 8px;
   width: 111px;
   text-transform: uppercase;
@@ -13,11 +18,5 @@ export const PrimaryButtonContainer = styled.button`
   padding: 7px 31px;
   display: flex;
   justify-content: center;
-  cursor: pointer;
-
-  &:hover {
-    border: 0.1px solid rgba(221, 221, 221, 1);
-    color: #7695ec;
-    background-color: #fff;
-  }
+  cursor: ${(props) => (props.disabledGrey ? "default" : "pointer")};
 `;

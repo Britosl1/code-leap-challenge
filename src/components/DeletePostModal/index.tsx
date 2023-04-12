@@ -1,14 +1,26 @@
 import { Buttons } from "../Buttons";
-import { DeletePostModalContainer } from "./styles";
+import { DeletePostModalBackground, DeletePostModalContainer } from "./styles";
 
-export function DeletePostModal() {
-  return (
-    <DeletePostModalContainer>
-      <h3>Are you sure you want to delete this item?</h3>
-      <div>
-        <Buttons.Secondary btnName="Cancel" onClick={() => {}} />
-        <Buttons.Danger btnName="Delete" onClick={() => {}} />
-      </div>
-    </DeletePostModalContainer>
-  );
+interface IDeletePostModalProps {
+  onClose: () => void;
+  onDelete: () => void;
+  isOpen: boolean;
+}
+
+export function DeletePostModal({
+  isOpen,
+  onClose,
+  onDelete,
+}: IDeletePostModalProps) {
+  return isOpen ? (
+    <DeletePostModalBackground>
+      <DeletePostModalContainer>
+        <h3>Are you sure you want to delete this item?</h3>
+        <div>
+          <Buttons.Secondary btnName="Cancel" onClick={onClose} />
+          <Buttons.Danger btnName="Delete" onClick={onDelete} />
+        </div>
+      </DeletePostModalContainer>
+    </DeletePostModalBackground>
+  ) : null;
 }

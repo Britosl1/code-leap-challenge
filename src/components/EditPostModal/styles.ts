@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const EditPostModalBackground = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  /* opacity: 0.6; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  inset: 0px;
+  height: 100%;
+`;
+
 export const EditPostModalContainer = styled.form`
   background: #ffffff;
   border: 1px solid #999999;
@@ -7,6 +19,11 @@ export const EditPostModalContainer = styled.form`
   padding: 24px;
   display: flex;
   flex-direction: column;
+  min-width: 600px;
+
+  @media (max-width: 768px) {
+    min-width: auto;
+  }
 
   h3 {
     font-weight: 700;

@@ -1,17 +1,23 @@
+import { useState } from "react";
+import { DeletePostModal } from "../DeletePostModal";
 import {
   ShowPostModalBottomContainer,
   ShowPostModalContainer,
   ShowPostModalTopContainer,
 } from "./styles";
+import { EditPostModal } from "../EditPostModal";
 
 export function ShowPostModal() {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+
   return (
     <ShowPostModalContainer>
       <ShowPostModalTopContainer>
         My First Post at CodeLeap Network!
         <div>
-          <button>1</button>
-          <button>2</button>
+          <button onClick={() => setIsEditModalOpen(true)}>Update</button>
+          <button onClick={() => setIsDeleteModalOpen(true)}>Delete</button>
         </div>
       </ShowPostModalTopContainer>
       <ShowPostModalBottomContainer>
@@ -29,6 +35,20 @@ export function ShowPostModal() {
           lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
         </p>
       </ShowPostModalBottomContainer>
+      {isDeleteModalOpen && (
+        <DeletePostModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(!isDeleteModalOpen)}
+          onDelete={() => setIsDeleteModalOpen(!isDeleteModalOpen)}
+        />
+      )}
+      {isEditModalOpen && (
+        <EditPostModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(!isEditModalOpen)}
+          onSave={() => setIsEditModalOpen(!isEditModalOpen)}
+        />
+      )}
     </ShowPostModalContainer>
   );
 }

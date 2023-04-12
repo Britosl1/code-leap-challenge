@@ -5,4 +5,5 @@ export const SignUpContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 0px 24px;
 `;

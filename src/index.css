@@ -6,10 +6,6 @@ body {
   background-color: rgba(221, 221, 221, 1);
 }
 
-#root {
-  height: 100vh;
-}
-
 textarea {
   font-family: "Roboto", sans-serif;
 }

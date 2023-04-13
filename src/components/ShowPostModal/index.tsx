@@ -7,13 +7,18 @@ import {
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
 import { timeSince } from "../../utils";
-import { UserPost, getUniquePost } from "../../services/posts";
+import {
+  UserPost,
+  deleteUniquePost,
+  getUniquePost,
+} from "../../services/posts";
+// import { deleteSiglePost } from "../../redux/slice";
 
 interface IShowPostModalProps {
   content: string;
   created_Datetime: string;
   title: string;
-  username: string;
+  username: string | null;
   postId: number;
 }
 
@@ -27,6 +32,11 @@ export function ShowPostModal({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [post, setPost] = useState<UserPost>();
+
+  const deletePost = (id: number) => {
+    deleteUniquePost(id);
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
 
   useEffect(() => {
     getUniquePost(postId).then((res) => {
@@ -54,7 +64,7 @@ export function ShowPostModal({
         <DeletePostModal
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(!isDeleteModalOpen)}
-          onDelete={() => setIsDeleteModalOpen(!isDeleteModalOpen)}
+          onDelete={() => deletePost(postId)}
         />
       )}
       {isEditModalOpen && (

@@ -8,6 +8,25 @@ export interface UserPost {
   content: string;
 }
 
+export interface NewUserPost {
+  username?: string | null;
+  title?: string | undefined;
+  content?: string | undefined;
+}
+
+export const createPostApi = async (user: NewUserPost): Promise<UserPost> => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  const data = await response.json();
+  return data;
+};
+
 export const getPosts = async (): Promise<UserPost[]> => {
   const response = await fetch(url, { method: "GET" });
   const data = await response.json();
@@ -16,6 +35,12 @@ export const getPosts = async (): Promise<UserPost[]> => {
 
 export const getUniquePost = async (id: number): Promise<UserPost> => {
   const response = await fetch(`${url}/${id}/`, { method: "GET" });
+  const data = await response.json();
+  return data;
+};
+
+export const deleteUniquePost = async (id: number): Promise<UserPost> => {
+  const response = await fetch(`${url}/${id}/`, { method: "DELETE" });
   const data = await response.json();
   return data;
 };

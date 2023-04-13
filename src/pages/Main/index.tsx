@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { CreatePostModal } from "../../components/CreatePostModal";
 import { NavBar } from "../../components/NavBar";
 import { ShowPostModal } from "../../components/ShowPostModal";

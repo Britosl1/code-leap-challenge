@@ -6,13 +6,8 @@ import {
   ShowPostModalTopContainer,
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
-import { timeSince } from "../../utils";
-import {
-  UserPost,
-  deleteUniquePost,
-  getUniquePost,
-} from "../../services/posts";
-// import { deleteSiglePost } from "../../redux/slice";
+import { UserPost, deleteUniquePost } from "../../services/posts";
+import { useGetUniquePostQuery } from "../../services/api";
 
 interface IShowPostModalProps {
   content: string;
@@ -32,6 +27,7 @@ export function ShowPostModal({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [post, setPost] = useState<UserPost>();
+  const { data, isSuccess } = useGetUniquePostQuery(postId);
 
   const deletePost = (id: number) => {
     deleteUniquePost(id);
@@ -39,10 +35,10 @@ export function ShowPostModal({
   };
 
   useEffect(() => {
-    getUniquePost(postId).then((res) => {
-      setPost({ ...res, content: res.content, title: res.title });
-    });
-  }, [postId]);
+    if (isSuccess) {
+      setPost({ ...data, content: data.content, title: data.title });
+    }
+  }, [postId, data, isSuccess]);
 
   return (
     <ShowPostModalContainer>

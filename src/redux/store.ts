@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { postsSlice } from "./slice";
 import { postApi } from "../services/api";
+import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(postApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

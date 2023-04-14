@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import { UserPost } from "./posts";
+import { UserPost } from "./posts";
 
 const url = "https://dev.codeleap.co.uk/careers/";
 
@@ -25,6 +25,13 @@ export const postApi = createApi({
         method: "GET",
       }),
     }),
+    createPost: builder.mutation({
+      query: (post: Partial<UserPost>) => ({
+        url: "",
+        method: "POST",
+        body: post,
+      }),
+    }),
     deleteUniquePost: builder.query({
       query: (postId: number) => ({
         url: `/${postId}/`,
@@ -38,4 +45,5 @@ export const {
   useGetPostsQuery,
   useGetUniquePostQuery,
   useDeleteUniquePostQuery,
+  useCreatePostMutation,
 } = postApi;

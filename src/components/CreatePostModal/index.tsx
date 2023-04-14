@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Buttons } from "../Buttons";
 import { CreatePostModalContainer } from "./styles";
-import { NewUserPost, createPostApi } from "../../services/posts";
+import { UserPost } from "../../services/posts";
+import { useCreatePostMutation } from "../../services/api";
 
 export function CreatePostModal() {
-  const [post, setPost] = useState<NewUserPost>();
+  const [post, setPost] = useState<Partial<UserPost>>();
+  const [createPost] = useCreatePostMutation();
 
   const getUserName = localStorage.getItem("userName");
 
@@ -15,14 +17,14 @@ export function CreatePostModal() {
   ) => {
     setPost({
       ...post,
-      username: getUserName,
+      username: getUserName !== null ? getUserName : "",
       [event.target.name]: event.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createPostApi(post!);
+    await createPost(post!);
   };
 
   return (

@@ -6,8 +6,11 @@ import {
   ShowPostModalTopContainer,
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
-import { UserPost, deleteUniquePost } from "../../services/posts";
-import { useGetUniquePostQuery } from "../../services/api";
+import { UserPost } from "../../services/posts";
+import {
+  useDeleteUniquePostQuery,
+  useGetUniquePostQuery,
+} from "../../services/api";
 
 interface IShowPostModalProps {
   content: string;
@@ -28,10 +31,12 @@ export function ShowPostModal({
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [post, setPost] = useState<UserPost>();
   const { data, isSuccess } = useGetUniquePostQuery(postId);
+  const { isSuccess: isSuccessDelete } = useDeleteUniquePostQuery(postId);
 
   const deletePost = (id: number) => {
-    deleteUniquePost(id);
-    setIsDeleteModalOpen(!isDeleteModalOpen);
+    if (isSuccessDelete) {
+      setIsDeleteModalOpen(!isDeleteModalOpen);
+    }
   };
 
   useEffect(() => {

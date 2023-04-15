@@ -8,9 +8,6 @@ export const postApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: url,
   }),
-  //https://redux.js.org/tutorials/essentials/part-5-async-logic
-  //https://www.youtube.com/watch?v=SKyEUS4heS0&ab_channel=GeekyShows
-  //https://wanago.io/2021/12/27/redux-toolkit-query-typescript/
 
   endpoints: (builder) => ({
     getPosts: builder.query({

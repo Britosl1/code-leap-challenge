@@ -6,6 +6,8 @@ interface UserPostSlice {
   newPost: NewUserPost;
 }
 
+// the code bellow will be used for later studies !!
+
 const initialState: UserPostSlice = {
   posts: [],
   newPost: {

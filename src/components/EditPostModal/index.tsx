@@ -20,6 +20,8 @@ export function EditPostModal({
   onChangeContent,
   onChangeTitle,
 }: IEditPostModalProps) {
+  const getUser = localStorage.getItem("userName") !== null;
+
   return isOpen ? (
     <EditPostModalBackground>
       <EditPostModalContainer>
@@ -28,7 +30,6 @@ export function EditPostModal({
         <input
           type="text"
           placeholder="Hello World"
-          // value={title}
           defaultValue={title}
           onChange={onChangeTitle}
           name="Title"
@@ -38,15 +39,16 @@ export function EditPostModal({
           cols={30}
           rows={10}
           placeholder="Content here"
-          // value={content}
           defaultValue={content}
           onChange={onChangeContent}
           name="Content"
         />
-        <div>
-          <Buttons.Secondary btnName="Cancel" onClick={onClose} />
-          <Buttons.Success btnName="Save" onClick={onSave} />
-        </div>
+        {getUser ? (
+          <div>
+            <Buttons.Secondary btnName="Cancel" onClick={onClose} />
+            <Buttons.Success btnName="Save" onClick={onSave} />
+          </div>
+        ) : null}
       </EditPostModalContainer>
     </EditPostModalBackground>
   ) : null;

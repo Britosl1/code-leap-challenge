@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Buttons } from "../Buttons";
 import { CreatePostModalContainer } from "./styles";
-import { UserPost } from "../../services/posts";
+import { UserPost } from "../../services/interfaces";
 import { useCreatePostMutation } from "../../services/api";
 
 export function CreatePostModal() {
@@ -22,15 +22,12 @@ export function CreatePostModal() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     await createPost(post!);
   };
 
   return (
-    <CreatePostModalContainer
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
-    >
+    <CreatePostModalContainer onSubmit={handleSubmit}>
       <h3>What’s on your mind?</h3>
       <label htmlFor="title">Title</label>
       <input

@@ -1,4 +1,4 @@
-import { NewUserPost, UserPost } from "./../services/posts";
+import { NewUserPost, UserPost } from "./../services/interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserPostSlice {

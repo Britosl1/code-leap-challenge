@@ -6,10 +6,10 @@ import {
   ShowPostModalTopContainer,
 } from "./styles";
 import { EditPostModal } from "../EditPostModal";
-import { UserPost } from "../../services/posts";
 import {
   useDeleteUniquePostQuery,
   useGetUniquePostQuery,
+  useUpdateUniquePostMutation,
 } from "../../services/api";
 
 interface IShowPostModalProps {
@@ -20,6 +20,14 @@ interface IShowPostModalProps {
   postId: number;
 }
 
+type UserPostLocal = {
+  id?: number | undefined;
+  username?: string | undefined;
+  created_datetime?: string | undefined;
+  title?: string | undefined;
+  content?: string | undefined;
+};
+
 export function ShowPostModal({
   title,
   username,
@@ -29,14 +37,33 @@ export function ShowPostModal({
 }: IShowPostModalProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
-  const [post, setPost] = useState<UserPost>();
+  // const [post, setPost] = useState<UserPost>();
+  const [post, setPost] = useState<UserPostLocal>();
   const { data, isSuccess } = useGetUniquePostQuery(postId);
   const { isSuccess: isSuccessDelete } = useDeleteUniquePostQuery(postId);
+  const [updateUniquePost] = useUpdateUniquePostMutation();
 
   const deletePost = (id: number) => {
     if (isSuccessDelete) {
       setIsDeleteModalOpen(!isDeleteModalOpen);
     }
+  };
+  const onChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setPost({
+      ...post,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const updatePost = () => {
+    updateUniquePost({
+      postId: postId,
+      post: { content: post?.content, title: post?.title },
+    });
+    setIsEditModalOpen(!isEditModalOpen);
   };
 
   useEffect(() => {
@@ -72,15 +99,11 @@ export function ShowPostModal({
         <EditPostModal
           content={post?.content}
           title={post?.title}
-          // onChangeTitle={(e: React.ChangeEvent<HTMLInputElement>) =>
-          //   setPost({ title: e.currentTarget.value })
-          // }
-          // onChangeContent={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-          //   setPostContent(e.currentTarget.value)
-          // }
+          onChangeTitle={onChange}
+          onChangeContent={onChange}
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(!isEditModalOpen)}
-          onSave={() => setIsEditModalOpen(!isEditModalOpen)}
+          onSave={updatePost}
         />
       )}
     </ShowPostModalContainer>

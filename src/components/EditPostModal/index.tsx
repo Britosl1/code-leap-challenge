@@ -5,8 +5,8 @@ interface IEditPostModalProps {
   onClose: () => void;
   onSave: () => void;
   isOpen: boolean;
-  title?: string;
-  content?: string;
+  title?: string | number | readonly string[] | undefined;
+  content?: string | number | readonly string[] | undefined;
   onChangeTitle?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeContent?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
@@ -28,17 +28,20 @@ export function EditPostModal({
         <input
           type="text"
           placeholder="Hello World"
-          value={title}
+          // value={title}
+          defaultValue={title}
           onChange={onChangeTitle}
+          name="Title"
         />
         <label htmlFor="content">Content</label>
         <textarea
-          id=""
           cols={30}
           rows={10}
           placeholder="Content here"
-          value={content}
+          // value={content}
+          defaultValue={content}
           onChange={onChangeContent}
+          name="Content"
         />
         <div>
           <Buttons.Secondary btnName="Cancel" onClick={onClose} />

@@ -2,7 +2,7 @@ import { PrimaryButtonContainer } from "./styles";
 
 interface IPrimaryProps {
   btnName: string;
-  onClick: () => void;
+  onClick?: () => void;
   isDisabled?: boolean;
 }
 

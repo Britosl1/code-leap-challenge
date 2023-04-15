@@ -37,7 +37,6 @@ export function ShowPostModal({
 }: IShowPostModalProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
-  // const [post, setPost] = useState<UserPost>();
   const [post, setPost] = useState<UserPostLocal>();
   const { data, isSuccess } = useGetUniquePostQuery(postId);
   const { isSuccess: isSuccessDelete } = useDeleteUniquePostQuery(postId);
